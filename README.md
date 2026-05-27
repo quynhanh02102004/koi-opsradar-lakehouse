@@ -141,6 +141,7 @@ The pipeline is orchestrated in Dagster, emphasizing data dependencies over task
 ## 7. Dashboard Insights
 
 Metabase connects directly to AWS Athena using the catalog `koi_opsradar_db`. Because of Athena's serverless pay-per-query model, stakeholders can query dashboards simultaneously without impacting ELT pipelines.
+<img width="1204" height="919" alt="{0D026149-7F5D-4EB9-90BA-484D465142A9}" src="https://github.com/user-attachments/assets/fd65d879-d837-4fad-b004-0c08f36dc1e8" />
 
 
 
