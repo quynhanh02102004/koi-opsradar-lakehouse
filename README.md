@@ -2,6 +2,9 @@
 
 An enterprise-grade, Data Lakehouse system designed to monitor and analyze **customer sentiment** across **over 40 KOI Thé branches from 4 different cities** in Vietnam by scraping, processing, and modeling **Google Maps reviews**
 
+<img width="835" height="970" alt="{7C10F3F0-37C9-4D26-9FF3-875B90C28C9C}" src="https://github.com/user-attachments/assets/80bbd674-6f26-4a8c-a5b8-052c0188021a" />
+
+
 ---
 
 ## Table of Contents
@@ -34,7 +37,9 @@ The key stakeholders include:
 
 ## 2. System Architecture
 
-The project implements a **Data Lakehouse architecture**, separating storage and computation 
+The project implements a **Data Lakehouse architecture**, separating **storage** and **computation**
+
+<img width="1920" height="1080" alt="Collect Data (7)" src="https://github.com/user-attachments/assets/8bb79fa6-b899-4b29-bd0c-373f467dd5af" />
 
 
 *   **Data Source:** Customer reviews and store metadata are scraped directly from Google Maps using a playwright-based scraper container.
@@ -125,11 +130,16 @@ dbt orchestrates the modeling of Silver data into a highly optimized Star Schema
 *   **fact_reviews:** The central fact table mapping metrics and foreign keys 
 *  Every run completely overwrites the S3 Gold targets. if the Gold layer is deleted, a single dbt run reconstructs the entire timeline from the raw S3 Silver history in seconds.
 
+<img width="1519" height="554" alt="{0E27594A-68AB-4FE4-BE4D-9BB41758DEDF}" src="https://github.com/user-attachments/assets/ec369bda-31cf-4ed5-8515-0e094107dfc9" />
+
 ---
 
 ## 6. Orchestration
 
 The pipeline is orchestrated in Dagster, emphasizing data dependencies over task execution.
+
+<img width="1804" height="694" alt="{2B723DAC-E58B-4DC5-B47F-EA738873053A}" src="https://github.com/user-attachments/assets/1b67933a-258f-4f76-b4f1-c1c60c187f2d" />
+
 
 *   **`bronze_raw_reviews`:** Invokes the Google Maps scraper containe and saves raw Parquet to S3.
 *   **`silver_clean_reviews`:** Automatically triggers after Bronze finishes, executes NLP sentiment scoring, and saves enriched Parquet.
