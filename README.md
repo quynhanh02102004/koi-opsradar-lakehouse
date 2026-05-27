@@ -51,6 +51,8 @@ The project implements a **Data Lakehouse architecture**, separating **storage**
     This clean separation of concerns decouples heavy ETL computations (executed locally by DuckDB) from interactive analytical queries (executed on the cloud by Athena), preventing concurrent Metabase BI queries from causing performance bottlenecks on the data pipeline.
 *   **Orchestrator:** **Dagster coordinates the entire execution lifecycle**. It manages the workflow using Software-Defined Assets (SDAs), tracking physical data dependencies, passing partition keys (daily run dates), managing execution state, and triggering subsequent stages (dbt compiles or AWS Athena catalog updates) only when their upstream dependencies have successfully materialized.
 
+<img width="1519" height="554" alt="{0E27594A-68AB-4FE4-BE4D-9BB41758DEDF}" src="https://github.com/user-attachments/assets/ec369bda-31cf-4ed5-8515-0e094107dfc9" />
+
 ---
 
 ## 3. Tools & Technologies
@@ -130,7 +132,7 @@ dbt orchestrates the modeling of Silver data into a highly optimized Star Schema
 *   **fact_reviews:** The central fact table mapping metrics and foreign keys 
 *  Every run completely overwrites the S3 Gold targets. if the Gold layer is deleted, a single dbt run reconstructs the entire timeline from the raw S3 Silver history in seconds.
 
-<img width="1519" height="554" alt="{0E27594A-68AB-4FE4-BE4D-9BB41758DEDF}" src="https://github.com/user-attachments/assets/ec369bda-31cf-4ed5-8515-0e094107dfc9" />
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/b7834452-d5a2-454a-9e6c-8288df22f085" />
 
 ---
 
