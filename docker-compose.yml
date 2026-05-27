@@ -1,0 +1,61 @@
+services:
+  # 1. POSTGRESQL: SAVE Metadata OF Dagster AND Metabase
+  postgres:
+    image: postgres:15-alpine
+    container_name: lakehouse-postgres
+    environment:
+      POSTGRES_USER: opsradar_admin
+      POSTGRES_PASSWORD: opsradar_password
+      POSTGRES_DB: opsradar_metadata
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - opsradar-network
+
+  # 2. DAGSTER
+  dagster:
+    build:
+      context: .
+      dockerfile: Dockerfile.dagster
+    container_name: lakehouse-dagster
+    user: root
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/opt/dagster/app
+      - opsradar_shared:/shared_data
+      - /var/run/docker.sock:/var/run/docker.sock
+    #command: dagster-webserver -h 0.0.0.0 -p 3000
+    #command: dagster-webserver -h 0.0.0.0 -p 3000 -m src.pipeline
+    command: dagster dev -h 0.0.0.0 -p 3000 -m src.pipeline
+    depends_on:
+      - postgres
+    networks:
+      - opsradar-network
+
+  # 3. METABASE:
+  metabase:
+    image: metabase/metabase:v0.48.4
+    container_name: lakehouse-metabase
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - opsradar-network
+
+networks:
+  opsradar-network:
+    name: opsradar-network
+    driver: bridge
+
+volumes:
+  pgdata:
+  opsradar_shared:
+    name: opsradar_shared

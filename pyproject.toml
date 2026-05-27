@@ -1,0 +1,14 @@
+[project]
+name = "koi-opsradar-lakehouse"
+version = "1.0.0"
+description = "KOI Thé Operational Radar: End-to-End Sentiment Lakehouse"
+dependencies = [
+    "dagster>=1.7.0",
+    "dagster-webserver>=1.7.0",
+    "pandas>=2.2.0",
+    "duckdb>=1.0.0",
+    "underthesea>=6.8.0",
+    "boto3>=1.34.0",
+    "dbt-core>=1.7.0",
+    "dbt-duckdb>=1.7.0"
+]

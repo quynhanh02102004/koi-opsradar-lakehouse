@@ -1,0 +1,27 @@
+# Bỏ qua file chứa khóa bảo mật (CỰC KỲ QUAN TRỌNG)
+.env
+
+# Bỏ qua dữ liệu thô cào về (Không lưu data lên Git)
+gmaps-output/
+gmaps-playwright-cache/
+tests/
+
+# Bỏ qua các file DuckDB vật lý cục bộ
+*.duckdb
+*.db
+
+# Bỏ qua các thư mục biên dịch của dbt và python
+target/
+dbt_packages/
+__pycache__/
+.pytest_cache/
+.DS_Store
+
+# Bỏ qua các thư mục log và file cấu hình tự sinh của dbt
+dbt_koi/logs/
+dbt_koi/target/
+dbt_koi/.user.yml
+
+# Bỏ qua toàn bộ các thư mục tạm thời của Dagster khi chạy local
+.tmp_dagster_home*/
+**/.tmp_dagster_home*

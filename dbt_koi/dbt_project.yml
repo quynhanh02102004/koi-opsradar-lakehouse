@@ -1,0 +1,10 @@
+name: 'dbt_koi'
+version: '1.0.0'
+config-version: 2
+profile: 'dbt_koi'
+model-paths: ["models"]
+seed-paths: ["seeds"]
+models:
+  dbt_koi:
+    marts:
+      materialized: external  

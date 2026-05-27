@@ -1,0 +1,13 @@
+dbt_koi:
+  outputs:
+    dev:
+      type: duckdb
+      path: ':memory:'
+      extensions:
+        - httpfs
+        - aws
+      setup: |
+        LOAD aws;
+        LOAD httpfs;
+        CREATE SECRET aws_s3_secret (TYPE S3, PROVIDER CREDENTIAL_CHAIN);
+  target: dev
